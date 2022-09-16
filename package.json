@@ -1,0 +1,14 @@
+{
+  "name": "java-template",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1",
+    "semantic-release": "^19.0.3"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
