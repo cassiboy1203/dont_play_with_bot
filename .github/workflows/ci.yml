@@ -19,6 +19,7 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
   release:
+    needs: build
     runs-on: ubuntu-latest
     
     steps:
