@@ -8,7 +8,7 @@ on:
 env:
   DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
   SPRING_DATASOURCE_URL: ${{ secrets.DATABASE_URL }}
-  SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.cj.jdbc.Driver
+  SPRING_DATASOURCE_DRIVERCLASSNAME: com.microsoft.sqlserver.jdbc.SQLServerDriver
     
 jobs:
   build:
