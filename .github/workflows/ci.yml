@@ -6,7 +6,7 @@ on:
     branches: [ "master", "next", "develop" ]
     
 env:
-  DISCORD_BOT_TOKEN: ${{DISCORD_BOT_TOKEN}}
+  DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
     
 jobs:
   build:
