@@ -1,0 +1,12 @@
+{
+  "name": "getcharacter",
+  "description": "checks if the character with the given name is in the dont play with list.",
+  "options": [
+    {
+      "name": "character",
+      "description": "the name of the character",
+      "type": 3,
+      "required": true
+    }
+  ]
+}

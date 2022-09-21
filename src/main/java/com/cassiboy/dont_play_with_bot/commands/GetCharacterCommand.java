@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class RegisterCommand implements ISlashCommand{
+public class GetCharacterCommand implements ISlashCommand{
 
     private ICharacterDAO characterDAO;
 
@@ -18,18 +18,18 @@ public class RegisterCommand implements ISlashCommand{
 
     @Override
     public String getName() {
-        return "register";
+        return "getcharacter";
     }
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
         var name = getStringValue(event, "character", null);
-        var characterClass = getStringValue(event, "class", null);
-        var server = getStringValue(event, "server", null);
 
-        characterDAO.register(name, characterClass, server);
-
-        return event.reply(name + " has been registered")
+        if (characterDAO.checkIfCharacterIsInList(name)){
+            return event.reply(name + " is in the do not play with list.")
+                    .withEphemeral(true);
+        }
+        return event.reply(name + " is not in the do not play with list.")
                 .withEphemeral(true);
     }
 }

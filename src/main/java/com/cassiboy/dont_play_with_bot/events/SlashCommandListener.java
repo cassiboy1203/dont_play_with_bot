@@ -1,7 +1,6 @@
 package com.cassiboy.dont_play_with_bot.events;
 
 import com.cassiboy.dont_play_with_bot.commands.ISlashCommand;
-import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

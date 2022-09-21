@@ -19,4 +19,11 @@ public class CharacterDAO implements ICharacterDAO{
     public void register(String name, String characterClass, String server) {
         jdbcTemplate.update("EXECUTE SP_ADD_CHARACTER @name=?, @class=?, @server=?",name, characterClass, server);
     }
+
+    @Override
+    public boolean checkIfCharacterIsInList(String name) {
+        return jdbcTemplate.queryForObject("DECLARE @isInList BIT " +
+                "EXECUTE SP_CHECK_CHARACTER @name = ?, @isInList = @isInList OUTPUT " +
+                "SELECT @isInList", Boolean.class, name);
+    }
 }
