@@ -33,6 +33,22 @@ jobs:
         with:
           node-version: 16
       - name: semantic release  
-        run: npx semantic-release@18
+        uses: cycjimmy/semantic-release-action@v3
+        with:
+          semantic_version: 18
+          branches: |
+            [
+              "master",
+              {
+                  "name": "next",
+                  "prerelease": true,
+                  "channel": "beta"
+              },
+              {
+                  "name": "develop",
+                  "prerelease": true,
+                  "channel": "alpha"
+              }
+            ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
