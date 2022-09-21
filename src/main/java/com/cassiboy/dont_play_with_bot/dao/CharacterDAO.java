@@ -17,6 +17,6 @@ public class CharacterDAO implements ICharacterDAO{
 
     @Override
     public void register(String name, String characterClass, String server) {
-        jdbcTemplate.update("INSERT INTO Characters(name, class, server) VALUES(?,?,?)",name, characterClass, server);
+        jdbcTemplate.update("EXECUTE SP_ADD_CHARACTER @name=?, @class=?, @server=?",name, characterClass, server);
     }
 }
