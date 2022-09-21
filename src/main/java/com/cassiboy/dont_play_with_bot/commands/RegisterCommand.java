@@ -1,7 +1,5 @@
 package com.cassiboy.dont_play_with_bot.commands;
 
-import com.cassiboy.dont_play_with_bot.Classes;
-import com.cassiboy.dont_play_with_bot.Servers;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.core.object.command.ApplicationCommandInteractionOption;
 import discord4j.core.object.command.ApplicationCommandInteractionOptionValue;
