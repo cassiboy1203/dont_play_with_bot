@@ -1,6 +1,6 @@
 package com.cassiboy.dont_play_with_bot.dto;
 
-public class Character {
+public class PlayerCharacter {
     private String name;
     private String charClass;
     private String server;
