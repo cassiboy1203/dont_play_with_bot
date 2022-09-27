@@ -13,6 +13,12 @@ public class CharacterDAO implements ICharacterDAO{
 
     private JdbcTemplate jdbcTemplate;
     private RowMapper<PlayerCharacter> characterRowMapper;
+    private RowMapper<String> stringRowMapper;
+
+    @Autowired
+    public void setStringRowMapper(RowMapper<String> stringRowMapper) {
+        this.stringRowMapper = stringRowMapper;
+    }
 
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -25,8 +31,8 @@ public class CharacterDAO implements ICharacterDAO{
     }
 
     @Override
-    public void register(String name, String characterClass, String server) {
-        jdbcTemplate.update("EXECUTE SP_ADD_CHARACTER @name=?, @class=?, @server=?",name, characterClass, server);
+    public void register(String name, String characterClass, String server, String stronghold, String reason) {
+        jdbcTemplate.update("EXECUTE SP_ADD_CHARACTER @name=?, @class=?, @server=?, @stronghold=?, @reason=?",name, characterClass, server, stronghold,reason);
     }
 
     @Override
@@ -37,7 +43,12 @@ public class CharacterDAO implements ICharacterDAO{
     }
 
     @Override
-    public List<PlayerCharacter> getCharactersInList(String charClass, String server) {
-        return jdbcTemplate.query("EXECUTE SP_GET_USERS_IN_LIST @class = ?, @server = ?", characterRowMapper , charClass, server);
+    public List<PlayerCharacter> getCharactersInList(String charClass, String server, String stronghold) {
+        return jdbcTemplate.query("EXECUTE SP_GET_USERS_IN_LIST @class = ?, @server = ?, @stronghold=?", characterRowMapper , charClass, server, stronghold);
+    }
+
+    @Override
+    public List<String> getReasons(String character) {
+        return jdbcTemplate.query("EXECUTE SP_GET_REASONS @character = ?", stringRowMapper, character);
     }
 }

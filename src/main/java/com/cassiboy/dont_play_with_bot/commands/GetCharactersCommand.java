@@ -28,18 +28,37 @@ public class GetCharactersCommand implements ISlashCommand {
     public Mono<Void> handle(ChatInputInteractionEvent event) {
         var charClass = getStringValue(event, "class", null);
         var server = getStringValue(event, "server", null);
+        var stronghold = getStringValue(event, "stronghold", null);
 
-        var characters = characterDAO.getCharactersInList(charClass, server);
+        var characters = characterDAO.getCharactersInList(charClass, server, stronghold);
 
         var embeds = new ArrayList<EmbedCreateSpec>();
         for (var character: characters){
+
+
+            var reasons = characterDAO.getReasons(character.getName());
+            var sb = new StringBuilder();
+            sb.append("**Reasons** \n");
+            for (var reason: reasons){
+                sb.append("- ");
+                sb.append(reason);
+                sb.append("\n");
+            }
+
             var embedBuilder = EmbedCreateSpec.builder()
                     .title(character.getName())
+                    .description(sb.toString())
                     .addField("class", character.getCharClass() == null ? "none": character.getCharClass(), true)
                     .addField("server", character.getServer() == null ? "none": character.getServer(), true)
-                    .addField("Number of reports", String.valueOf(character.getNumberOfReports()), true);
+                    .addField("Number of reports", String.valueOf(character.getNumberOfReports()), true)
+                    .addField("stronghold", character.getStronghold(), true);
 
             embeds.add(embedBuilder.build());
+        }
+
+        if (embeds.isEmpty()){
+            return event.reply("There are no characters with the selected filters registered.")
+                    .withEphemeral(true);
         }
 
         return event.reply()

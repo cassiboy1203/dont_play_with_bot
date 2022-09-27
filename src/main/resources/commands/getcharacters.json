@@ -129,6 +129,12 @@
           "value": "PUNIKA"
         }
       ]
+    },
+    {
+      "name": "stronghold",
+      "description": "The stronghold of the player",
+      "type": 3,
+      "required": false
     }
   ]
 }

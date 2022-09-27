@@ -4,7 +4,16 @@ public class PlayerCharacter {
     private String name;
     private String charClass;
     private String server;
+    private String stronghold;
     private int numberOfReports;
+
+    public String getStronghold() {
+        return stronghold;
+    }
+
+    public void setStronghold(String stronghold) {
+        this.stronghold = stronghold;
+    }
 
     public String getName() {
         return name;
