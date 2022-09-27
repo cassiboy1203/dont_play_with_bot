@@ -1,0 +1,140 @@
+{
+  "name": "getcharacters",
+  "description": "Gets the list of the the characters in the do not play with list.",
+  "options": [
+    {
+      "name": "class",
+      "description": "The class of the character",
+      "type": 3,
+      "required": false,
+      "choices": [
+        {
+          "name": "Berserker",
+          "value": "BERSERKER"
+        },
+        {
+          "name": "Paladin",
+          "value": "PALADIN"
+        },
+        {
+          "name": "Gunlancer",
+          "value": "GUNLANCER"
+        },
+        {
+          "name": "Destroyer",
+          "value": "DESTROYER"
+        },
+        {
+          "name": "Sorceress",
+          "value": "SORCERESS"
+        },
+        {
+          "name": "Bard",
+          "value": "BARD"
+        },
+        {
+          "name": "Arcana",
+          "value": "ARCANA"
+        },
+        {
+          "name": "Summoner",
+          "value": "SUMMONER"
+        },
+        {
+          "name": "Shadowhunter",
+          "value": "SHADOWNHUNTER"
+        },
+        {
+          "name": "Deathblade",
+          "value": "DEATHBLADE"
+        },
+        {
+          "name": "Reaper",
+          "value": "REAPER"
+        },
+        {
+          "name": "Striker",
+          "value": "STRIKER"
+        },
+        {
+          "name": "Wardancer",
+          "value": "WARDANCER"
+        },
+        {
+          "name": "Scrapper",
+          "value": "SCRAPPER"
+        },
+        {
+          "name": "Soulfist",
+          "value": "SOULFIST"
+        },
+        {
+          "name": "Glaivier",
+          "value": "GLAVIER"
+        },
+        {
+          "name": "Gunslinger",
+          "value": "GUNSLINGER"
+        },
+        {
+          "name": "Artillerist",
+          "value": "ARTILLERRIST"
+        },
+        {
+          "name": "Deadeye",
+          "value": "DEADEYE"
+        },
+        {
+          "name": "Sharpshooter",
+          "value": "SHARPSHOOTER"
+        }
+      ]
+    },
+    {
+      "name": "server",
+      "description": "The server the player is from.",
+      "type": 3,
+      "required": false,
+      "choices": [
+        {
+          "name": "Rethramis",
+          "value": "RETHRAMIS"
+        },
+        {
+          "name": "Moonkeep",
+          "value": "MOONKEEP"
+        },
+        {
+          "name": "Shadespire",
+          "value": "SHADESPIRE"
+        },
+        {
+          "name": "Petrania",
+          "value": "PETRANIA"
+        },
+        {
+          "name": "Tortoyk",
+          "value": "TORTOYK"
+        },
+        {
+          "name": "Stonehearth",
+          "value": "STONEHEARTH"
+        },
+        {
+          "name": "Tragon",
+          "value": "TRAGON"
+        },
+        {
+          "name": "Punika",
+          "value": "PUNIKA"
+        }
+      ]
+    },
+    {
+      "name": "stronghold",
+      "description": "The stronghold of the player",
+      "type": 3,
+      "required": false
+    }
+  ]
+}

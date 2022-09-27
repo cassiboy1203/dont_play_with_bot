@@ -9,5 +9,4 @@ public class DontPlayWithBotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DontPlayWithBotApplication.class, args);
 	}
-
 }

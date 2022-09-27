@@ -1,3 +1,6 @@
 .idea/
 node_modules/
+target
 yarn.lock
+application.properties
+application_beta.properties
