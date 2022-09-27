@@ -5,7 +5,7 @@ import com.cassiboy.dont_play_with_bot.dto.PlayerCharacter;
 import java.util.List;
 
 public interface ICharacterDAO {
-    void register(String name, String characterClass, String server);
+    void register(String name, String characterClass, String server, String stronghold);
     boolean checkIfCharacterIsInList(String name);
-    List<PlayerCharacter> getCharactersInList(String charClass, String server);
+    List<PlayerCharacter> getCharactersInList(String charClass, String server, String stronghold);
 }

@@ -15,6 +15,7 @@ public class CharacterRowMapper implements RowMapper<PlayerCharacter> {
         character.setName(rs.getString("name"));
         character.setCharClass(rs.getString("class"));
         character.setServer(rs.getString("server"));
+        character.setStronghold(rs.getString("stronghold"));
         character.setNumberOfReports(rs.getInt("reportCount"));
         return character;
     }
