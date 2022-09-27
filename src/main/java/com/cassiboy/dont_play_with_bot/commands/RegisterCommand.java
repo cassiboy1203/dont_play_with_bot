@@ -27,8 +27,9 @@ public class RegisterCommand implements ISlashCommand{
         var characterClass = getStringValue(event, "class", null);
         var server = getStringValue(event, "server", null);
         var stronghold = getStringValue(event, "stronghold", null);
+        var reason = getStringValue(event, "reason", null);
 
-        characterDAO.register(name, characterClass, server, stronghold);
+        characterDAO.register(name, characterClass, server, stronghold, reason);
 
         return event.reply(name + " has been registered")
                 .withEphemeral(true);
