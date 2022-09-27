@@ -42,6 +42,11 @@ public class GetCharactersCommand implements ISlashCommand {
             embeds.add(embedBuilder.build());
         }
 
+        if (embeds.isEmpty()){
+            return event.reply("There are no characters registered")
+                    .withEphemeral(true);
+        }
+
         return event.reply()
                 .withEmbeds(embeds)
                 .withEphemeral(true);

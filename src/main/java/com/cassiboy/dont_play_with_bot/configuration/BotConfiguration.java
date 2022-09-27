@@ -4,6 +4,7 @@ import com.cassiboy.dont_play_with_bot.events.IEventListener;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.Event;
+import discord4j.core.object.presence.ClientActivity;
 import discord4j.core.object.presence.ClientPresence;
 import discord4j.rest.RestClient;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +28,7 @@ public class BotConfiguration {
         var client = DiscordClientBuilder.create(botToken)
                 .build()
                 .gateway()
-                .setInitialPresence(ignore -> ClientPresence.online())
+                .setInitialPresence(ignore -> ClientPresence.online(ClientActivity.listening("to /commands")))
                 .login()
                 .block();
 
