@@ -25,8 +25,8 @@ public class CharacterDAO implements ICharacterDAO{
     }
 
     @Override
-    public void register(String name, String characterClass, String server) {
-        jdbcTemplate.update("EXECUTE SP_ADD_CHARACTER @name=?, @class=?, @server=?",name, characterClass, server);
+    public void register(String name, String characterClass, String server, String stronghold) {
+        jdbcTemplate.update("EXECUTE SP_ADD_CHARACTER @name=?, @class=?, @server=?, @stronghold=?",name, characterClass, server, stronghold);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CharacterDAO implements ICharacterDAO{
     }
 
     @Override
-    public List<PlayerCharacter> getCharactersInList(String charClass, String server) {
-        return jdbcTemplate.query("EXECUTE SP_GET_USERS_IN_LIST @class = ?, @server = ?", characterRowMapper , charClass, server);
+    public List<PlayerCharacter> getCharactersInList(String charClass, String server, String stronghold) {
+        return jdbcTemplate.query("EXECUTE SP_GET_USERS_IN_LIST @class = ?, @server = ?, @stronghold=?", characterRowMapper , charClass, server, stronghold);
     }
 }

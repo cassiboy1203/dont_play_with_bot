@@ -100,7 +100,7 @@
       "name": "server",
       "description": "The server the player is from.",
       "type": 3,
-      "required": false,
+      "required": true,
       "choices": [
         {
           "name": "Rethramis",
@@ -135,6 +135,12 @@
           "value": "PUNIKA"
         }
       ]
+    },
+    {
+      "name": "stronghold",
+      "description": "The name of the stronghold to link the character to a roster",
+      "type": 3,
+      "required": true
     }
   ]
 }
