@@ -2,6 +2,7 @@ package com.cassiboy.dont_play_with_bot.commands;
 
 import com.cassiboy.dont_play_with_bot.dao.ICharacterDAO;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
+import discord4j.core.object.entity.Message;
 import discord4j.core.spec.EmbedCreateSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import reactor.core.publisher.Mono;
 import java.util.ArrayList;
 
 @Service
-public class GetCharactersCommand implements ISlashCommand {
+public class GetRosterCommand implements ISlashCommand {
 
     private ICharacterDAO characterDAO;
 
@@ -21,21 +22,36 @@ public class GetCharactersCommand implements ISlashCommand {
 
     @Override
     public String getName() {
-        return "getcharacters";
+        return "getroster";
     }
 
     @Override
     public Mono<Void> handle(ChatInputInteractionEvent event) {
-        var charClass = getStringValue(event, "class", null);
-        var server = getStringValue(event, "server", null);
+        event.deferReply()
+                .withEphemeral(true)
+                .subscribe();
+        return sendMessage(event).then();
+    }
+
+    public Mono<Message> sendMessage(ChatInputInteractionEvent event){
+        var playerCharacter = getStringValue(event, "character", null);
         var stronghold = getStringValue(event, "stronghold", null);
 
-        var characters = characterDAO.getCharactersInList(charClass, server, stronghold);
+        if (playerCharacter == null && stronghold == null){
+            return event.createFollowup("Invalid arguments, require character name or stronghold to be entered.")
+                    .withEphemeral(true);
+        }
+        if (playerCharacter != null && stronghold != null){
+            return event.createFollowup("Too many arguments, 1 argument expected but 2 arguments entered");
+        }
+
+
+
+        var characters = characterDAO.getRoster(playerCharacter, stronghold);
 
         var embeds = new ArrayList<EmbedCreateSpec>();
+
         for (var character: characters){
-
-
             var reasons = characterDAO.getReasons(character.getName());
             var sb = new StringBuilder();
             sb.append("**Reasons** \n");
@@ -54,15 +70,29 @@ public class GetCharactersCommand implements ISlashCommand {
                     .addField("stronghold", character.getStronghold(), true);
 
             embeds.add(embedBuilder.build());
+
+            if (embeds.size() == 10){
+                event.createFollowup()
+                        .withEmbeds(embeds)
+                        .withEphemeral(true)
+                        .subscribe();
+
+                embeds = new ArrayList<>();
+            }
         }
 
-        if (embeds.isEmpty()){
-            return event.reply("There are no characters with the selected filters registered.")
+        if (!embeds.isEmpty()){
+            return event.createFollowup()
+                    .withEmbeds(embeds)
                     .withEphemeral(true);
         }
 
-        return event.reply()
-                .withEmbeds(embeds)
+        if (characters.isEmpty()){
+            return event.createFollowup("There are no characters with the selected filters registered.")
+                    .withEphemeral(true);
+        }
+
+        return event.createFollowup("All characters returned.")
                 .withEphemeral(true);
     }
 }
