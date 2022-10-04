@@ -43,8 +43,8 @@ public class CharacterDAO implements ICharacterDAO{
     }
 
     @Override
-    public List<PlayerCharacter> getCharactersInList(String charClass, String server, String stronghold) {
-        return jdbcTemplate.query("EXECUTE SP_GET_USERS_IN_LIST @class = ?, @server = ?, @stronghold=?", characterRowMapper , charClass, server, stronghold);
+    public List<PlayerCharacter> getRoster(String playerCharacter, String stronghold) {
+        return jdbcTemplate.query("EXECUTE SP_GET_ROSTER @name = ?, @stronghold=?", characterRowMapper, playerCharacter, stronghold);
     }
 
     @Override
